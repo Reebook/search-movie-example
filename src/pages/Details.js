@@ -1,52 +1,40 @@
-import React, { Component } from "react"
-import PropTypes from "prop-types"
-const API_KEY = "55c318c9"
+import React from "react"
+import { UseDetail } from "../hooks/UseDetail"
 
-export class Details extends Component{
-    static propTypes = {        
-        match: PropTypes.shape({
-            params:PropTypes.object,
-            isExact:PropTypes.bool,
-            path: PropTypes.string,
-            url:PropTypes.string
-        })
-    }
+function _goBack(){
+    window.history.back()
+}
+export function Details(){
+    
 
-    state = {movie: {}}
-
-    _fectchMovie({id}){
-        fetch(`http://www.omdbapi.com/?apikey=${API_KEY}&i=${id}`)
-        .then(res => res.json()).then(movie =>{
-            console.log(movie)
-            this.setState({movie})
-            //const {Search = [], totalResults= "0"} = results
-            //this.props.onResults(Search)
-        })
-    }
-
-    _goBack(){
-        window.history.back()
-    }
-
-    componentDidMount(){
-        const {id} = this.props.match.params
-        this._fectchMovie({id})
-    }
-
-    render(){
-        const {Title,Poster,Actors,Metascore,Plot,Rated} = this.state.movie
+    const url = document.location.pathname
+    
+    const movie = UseDetail(url.split("/")[2])  
+    if(movie != null) { 
         return(
-            <div>
-                <button onClick={this._goBack}>Volver</button>
-                <h1>{Title}</h1>
-                <img src={Poster} alt={Title}/>
-                <h3>{Actors}</h3>
-                <span>{Metascore}</span>
-                <h4>{Rated}</h4>
-                <p>{Plot}</p>
-
+            <div className="columns is-mobile is-centered">                
+                <div className="column is-half box">
+                    <button onClick={_goBack} className="button is-primary">Volver</button>
+                    <h1 className="title is-5">{movie.Title}</h1>
+                    <img src={movie.Poster} alt={movie.Title}/>
+                    <h3>{movie.Actors}</h3>
+                    <div class="tags has-addons is-centered">
+                        <span className="tag is-dark">Score</span>
+                        <span className="tag is-normal">{movie.Metascore}</span>
+                    </div>
+                    <div class="tags has-addons is-centered">
+                        <span className="tag is-dark">Rated</span>
+                        <span className="tag is-normal">{movie.Rated}</span>
+                    </div>
+                    <p>{movie.Plot}</p>
+                </div>
             </div>
-        )
+        )   
+    }else {
+        return(
+        <div>
+        <button onClick={_goBack}>Volver</button>
+        </div>)
     }
 
 }

@@ -3,7 +3,7 @@ import './App.css';
 import 'bulma/css/bulma.css'
 import {Switch, Route} from 'react-router-dom'
 import {Details} from './pages/Details'
-import {Home} from './pages/Home'
+import Home from './pages/Home'
 
 import {NotFound} from './pages/NotFound'
 class App extends Component {
