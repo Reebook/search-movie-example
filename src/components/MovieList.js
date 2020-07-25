@@ -1,6 +1,8 @@
 import React from "react"
 import PropTypes from "prop-types"
+import Pagination from './paginationMovies';
 import {Movie} from './Movie'
+
 
 // export class MovieList extends Component{
 //     static propTypes ={
@@ -11,9 +13,13 @@ import {Movie} from './Movie'
 // }
 
 export function MovieList({movies}){
+    console.log(movies)
+    if(movies.Search !== undefined){
     return(
-        <div className="MovieList">{            
-            movies.map(movie =>{
+        
+        <div className="MovieList columns">{   
+            
+            movies.Search.map(movie =>{
                 return (
                 <div key={movie.imdbID} className='MoviesList-item'>
                 <Movie                 
@@ -21,14 +27,23 @@ export function MovieList({movies}){
                     title={movie.Title}
                     year={movie.Year}
                     poster={movie.Poster}
-                />            
+                />      
+         
                 </div>
                 )
                 
             })
         }
+ 
+               <Pagination countPages={movies.totalResults}/>
         </div>
     )
+    }else{
+        return(
+            <div className="MovieList columns">
+            </div>
+        )
+    }
 }
 
 MovieList.propTypes = {

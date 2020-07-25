@@ -21,7 +21,7 @@ class App extends Component {
     
     <div className="App">
       <Switch>
-        <Route exact path="/" component={Home}/>
+        <Route exact path={`${url.pathname}`} component={Home}/>
         <Route path='/detail/:id' component={Details}/>
         <Route  component={NotFound}/>
       </Switch>
