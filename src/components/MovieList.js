@@ -3,8 +3,9 @@ import PropTypes from "prop-types"
 import Pagination from './paginationMovies';
 import {Movie} from './Movie'
 
-export function MovieList({movies}){
-    console.log(movies)
+export function MovieList(props){
+
+    const { movies, search } = props;    
     if(movies.Search !== undefined){
         return(
         
@@ -27,7 +28,7 @@ export function MovieList({movies}){
             })
         }
         </div>
-               <Pagination countPages={movies.totalResults}/>
+               <Pagination countPages={movies.totalResults} name={search}/>
         </div>
         )
     }else{
