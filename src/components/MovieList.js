@@ -39,7 +39,7 @@ export function MovieList({movies}){
 }
 
 MovieList.propTypes = {
-    movies: PropTypes.array
+    movies: PropTypes.object
 }
 
 

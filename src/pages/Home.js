@@ -1,6 +1,5 @@
 import React, {useState, useEffect } from 'react';
 import {Title} from '../components/Title'
-import { UseSearch } from '../hooks/UseSearch';
 import getMovies from '../services/getMovies';
 import { MovieList } from '../components/MovieList';
 
@@ -38,15 +37,15 @@ export default function Home(){
             <Title>Search Movies</Title>
             <form onSubmit={_handleSubmit} className="columns is-centered margin-bottom">
                 
-                  <div className="control ">
+                  <div className="control">
                     <input 
-                    className="input" type="text"
+                    className="input" 
+                    type="text"
                     onChange={_handleChange} 
-                    type="text" 
                     value={keyword}
                     placeholder="buscar una pelicula"/>
                   </div>
-                  <div className="control ">
+                  <div className="control">
                       <button className="button is-info">
                       Buscar
                       </button>
@@ -55,7 +54,6 @@ export default function Home(){
             </form>
 
             <div className="container is-fluid">
-              
            
             {results
             ? _renderResults()
