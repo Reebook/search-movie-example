@@ -1,6 +1,7 @@
-import React from "react"
+import React, {useState} from "react"
 import { array } from "prop-types";
 import { UseSearch } from "../hooks/UseSearch"
+import Pagination from 'bulma-pagination-react';
 
 function CreateList(count){
     console.log(count.count);
@@ -38,21 +39,26 @@ function CreateList(count){
     }
 }
 
-export default  function Pagination(props){
+export default  function PaginatioMovies(props){
     const count = props.countPages;
+    const perPage = 10;
+    const [activePage, setActivePage ] = useState(1);
+    const POSTS_PER_PAGE = 10;
+    const pages = Math.ceil(count / perPage);
 
+
+    const handlePageChange = (pageNumber) => {
+        console.log(`active page is ${pageNumber}`);
+        setActivePage(pageNumber);
+      }
     return(
-    <div>
-        <nav className="pagination" role="navigation" aria-label="pagination">
-            <a className="pagination-previous">Previous</a>
-            <a className="pagination-next">Next page</a>
-      
 
-            <CreateList count={count}/>
-            
-                
-        </nav> 
-        
+    <div>
+        <Pagination
+            pages={count}
+            currentPage={activePage}
+            onChange={page => handlePageChange(page)}
+            />
     </div>
     )
 }

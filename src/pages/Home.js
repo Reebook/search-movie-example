@@ -4,62 +4,6 @@ import { UseSearch } from '../hooks/UseSearch';
 import getMovies from '../services/getMovies';
 import { MovieList } from '../components/MovieList';
 
-// export class Home extends Component {
-//     state = {usedSearch: false, results: []}
-
-//     _handleResults = (results)=>{
-//       this.setState({results,usedSearch:true})  
-//     }
-  
-//     _renderResults () {
-//       return (
-//         this.state.results.length === 0 
-//         ? <p>Sin resultados</p>
-//         : <MovieList movies={this.state.results}/>
-//       )
-//     }
-
-//     render(){
-//       const _handleSubmit = evt =>{
-//         evt.preventDefault()
-//         this.state.results =  UseSearch(evt.target.value)
-//         }
-       
-//         const _handleChange= evt =>{
-//             evt.preventDefault()
-            
-//            console.log(evt.target.value)
-//        }
-//         return (
-//             <div>
-//                 <Title>Search Movies</Title>
-//                 <div className="SearchForm-wrapper">
-//                 <form onSubmit={_handleSubmit}>
-//             <div className="field has-addons">
-//             <div className="control">
-//                 <input 
-//                 className="input"
-//                 onChange={_handleChange} 
-//                 type="text" 
-//                 placeholder="buscar una pelicula"/>
-//             </div>
-//             <div className="control">
-//                 <button className="button is-info">
-//                 Buscar
-//                 </button>
-//             </div>
-//             </div>
-//         </form>
-//                 </div>
-//                 {this.state.usedSearch
-//                 ? this._renderResults()
-//                 : <small>Use este formulario para buscar una pelicula</small>
-//                 }
-//             </div>
-//         )
-//     }
-// }
-
 export default function Home(){
   const [keyword, setKeyword] = useState(localStorage.getItem('lastSearch') || '')
 
@@ -90,31 +34,34 @@ export default function Home(){
   },[keyword])
 
   return (
-        <div>
+        <div className="is-mobile is-centered">
             <Title>Search Movies</Title>
-            <div className="SearchForm-wrapper">
-            <form onSubmit={_handleSubmit}>
-        <div className="field has-addons">
-        <div className="control">
-            <input 
-            className="input"
-            onChange={_handleChange} 
-            type="text" 
-            value={keyword}
-            placeholder="buscar una pelicula"/>
-        </div>
-        <div className="control">
-            <button className="button is-info">
-            Buscar
-            </button>
-        </div>
-        </div>
-    </form>
-            </div>
+            <form onSubmit={_handleSubmit} className="columns is-centered margin-bottom">
+                
+                  <div className="control ">
+                    <input 
+                    className="input" type="text"
+                    onChange={_handleChange} 
+                    type="text" 
+                    value={keyword}
+                    placeholder="buscar una pelicula"/>
+                  </div>
+                  <div className="control ">
+                      <button className="button is-info">
+                      Buscar
+                      </button>
+                  </div>
+                                  
+            </form>
+
+            <div className="container is-fluid">
+              
+           
             {results
             ? _renderResults()
             : <small>Use este formulario para buscar una pelicula</small>
             }
+             </div>
         </div>
     )
 }

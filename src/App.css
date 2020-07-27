@@ -2,23 +2,26 @@
   text-align: center;
 }
 
-.SearchForm-wrapper{
+/* .SearchForm-wrapper{
   display: flex;
   justify-content: center;
-}
+} */
 
-.MovieList{
+/* .MovieList{
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
   padding: 16px;
-}
+} */
 
-.MovisList-item{
+/* .MovisList-item{
   margin-bottom: 24px;
   width: 48%;
-}
+} */
 
+.margin-bottom{
+  margin-bottom: 50px;
+}
 .image-size{
   width: 300px;
 }
