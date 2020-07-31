@@ -1,54 +1,32 @@
 import React from 'react';
 import {Title} from '../components/Title'
+import SearchForm from '../components/searchForm';
 import { MovieList } from '../components/MovieList';
 import { useMovies } from '../context/MoviesContext';
-
+import { UseSearch } from '../hooks/UseSearch';
 export default function Home(){
- 
-  const {results,keyword,setKeyword} = useMovies()
   
-  const _handleSubmit = evt =>{
-    evt.preventDefault()
-    //setKeyword(keyword)    
+  const {results, setKeyword, setPage, keyword} = useMovies()    
+  const onSubmit =(key) =>{
+    localStorage.setItem('lastSearch', key);
+    console.log(key)
+     setPage(1)
+     setKeyword(key)
+    
+    
   }
-   
-  const _handleChange = evt =>{
-        evt.preventDefault()               
-        console.log(evt.target.value)
-        
-          localStorage.setItem('lastSearch', evt.target.value);
-          setKeyword(evt.target.value)
-        
-  }
-
   const  _renderResults = () => {
-          return (
-            results.length === 0 
-            ? <p>Sin resultados</p>
-            : <MovieList movies={results} search={keyword}/>
-          )
-        }
+    return (
+        results.length === 0 
+        ? <p>Sin resultados</p>
+        : <MovieList movies={results} search={keyword}/>
+    )
+} 
         
   return (
         <div className="is-mobile is-centered">
             <Title>Search Movies</Title>
-            <form onSubmit={_handleSubmit} className="columns is-centered margin-bottom">
-                
-                  <div className="control">
-                    <input 
-                    className="input" 
-                    type="text"
-                    onChange={_handleChange} 
-                    value={keyword}
-                    placeholder="buscar una pelicula"/>
-                  </div>
-                  <div className="control">
-                      <button className="button is-info">
-                      Buscar
-                      </button>
-                  </div>
-                                  
-            </form>
+            <SearchForm onSubmit={onSubmit}/>
 
             <div className="container is-fluid">
            

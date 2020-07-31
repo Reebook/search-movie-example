@@ -6,14 +6,14 @@ import { useMovies } from "../context/MoviesContext";
 export default  function PaginatioMovies(props){
     const {countPages, name} = props
     const count = parseInt(countPages);     
-    let {results,setKeyword,setPage} = useMovies()
-    console.log(results)   
+    let {setKeyword,setPage} = useMovies()
+   // console.log(results)   
     const [activePage, setActivePage ] = useState(1);
     const pagesCount = Math.ceil(count / 10);
 
 
     const handlePageChange = (pageNumber) => {
-        console.log(`active page is ${pageNumber}`);
+      //  console.log(`active page is ${pageNumber}`);
         setActivePage(pageNumber);        
         setPage(pageNumber)
         setKeyword(name)

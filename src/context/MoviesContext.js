@@ -22,7 +22,7 @@ export function MoviesProvider(props){
                 setPage
             })
       }, [results,keyword,page])
-
+     
 
       return <MoviesContext.Provider value={value} {...props}/>
 }
