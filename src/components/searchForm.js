@@ -20,7 +20,7 @@ export default function SearchForm({onSubmit}){
     }
 
     return (
-        <form className="columns is-centered margin-bottom">                
+        <form className="columns is-mobile is-centered margin-bottom">                
                   <div className="control">
                     <input 
                     className="input" 

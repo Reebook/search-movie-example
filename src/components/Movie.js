@@ -8,8 +8,8 @@ export function Movie({id,poster,title,year}){
         <div>
                 <div className="card">
                     <Link to={`/detail/${id}`}className="">
-                    <div className="card-image">
-                        <figure className="image  image-size">
+                    <div className="card-image is-centered">
+                        <figure className="image  image-size has-image-centered">
                         <img src={poster} alt={title}/>
                         </figure>
                     </div>
