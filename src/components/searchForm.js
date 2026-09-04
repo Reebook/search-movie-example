@@ -1,15 +1,15 @@
 import React from "react"
 
-import { UseSearch } from "../hooks/UseSearch"
-
 import { useMovies } from '../context/MoviesContext';
 
 export default function SearchForm({onSubmit}){
     const {keyword,setKeyword} = useMovies()
 
     const _handleSubmit = evt =>{
-        evt.preventDefault()               
-        onSubmit(keyword)
+        evt.preventDefault()     
+        if(keyword != undefined && keyword.trim() !== '') {         
+            onSubmit(keyword)
+        }
  
     }
    

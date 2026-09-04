@@ -3,7 +3,6 @@ import {Title} from '../components/Title'
 import SearchForm from '../components/searchForm';
 import { MovieList } from '../components/MovieList';
 import { useMovies } from '../context/MoviesContext';
-import { UseSearch } from '../hooks/UseSearch';
 export default function Home(){
   
   const {results, setKeyword, setPage, keyword} = useMovies()    

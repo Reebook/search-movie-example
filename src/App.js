@@ -9,9 +9,11 @@ import {NotFound} from './pages/NotFound'
 import {MoviesProvider} from './context/MoviesContext';
 
 
-export default ()=><MoviesProvider>
+const AppWithProvider = ()=><MoviesProvider>
   <App></App>
 </MoviesProvider>
+
+export default AppWithProvider
 function App(){
    
     const url = new URL(document.location)
